@@ -16,6 +16,6 @@ out_img2 = cv2.filter2D(out_img, -1, kernel_y)
 
 plt.subplot(121), plt.imshow(img, cmap='gray'), plt.title('Original')
 plt.xticks([]), plt.yticks([])
-plt.subplot(122), plt.imshow(out_img2, cmap='gray'), plt.title('Sharpened with Laplacian')
+plt.subplot(122), plt.imshow(out_img2, cmap='gray'), plt.title('Sharpened with Prewitt')
 plt.xticks([]), plt.yticks([])
 plt.show()
