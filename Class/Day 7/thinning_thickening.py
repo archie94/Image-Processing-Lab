@@ -13,7 +13,8 @@ img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)[1]
 kernel = np.array([[1, 0, 0], [0, 1, 1], [0, 1, 1]]) # kernel of hit or miss
 # kernel = kernel + np.array( [[1, 1, 1], [1, 1, 1], [1, 1, 1]] )
 
-out1 = out2 = copy.copy(img)
+out2 = copy.copy(img)
+out1 = copy.copy(img)
 img_hm = cv2.filter2D(img, -1, kernel)
 
 for i in range(0, img.shape[0]):
@@ -22,9 +23,15 @@ for i in range(0, img.shape[0]):
 			out1[i,j]=255
 		else:
 			out1[i,j]=0
-		# out2[i,j]=img2[i,j]-img_hm[i,j]
 
-out2 = cv2.subtract(img, img_hm)
+for i in range(0, img.shape[0]):
+	for j in range(0, img.shape[1]):
+		if(img[i,j]==0 and img_hm[i,j]==255):
+			out2[i,j]=255
+		else:
+			out2[i,j]=0
+
+#out2 = cv2.subtract(img, img_hm)
 
 plt.subplot(131),plt.imshow(img, cmap = 'gray')
 plt.title('Input Image'), plt.xticks([]), plt.yticks([])
